@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  actions as routeActions,
-  types as routes,
-} from "../reducers/routes.actions";
 
-import { Edit, DeleteOutline } from "@material-ui/icons";
 import { useForm } from "react-hook-form";
 import { actions } from "../reducers/user.actions";
 import { Button } from "@material-ui/core";
 import { ControlledTextField } from "../components/inputs";
+import { Spinner } from "../components/spinner";
+import GridItem from "../components/grid/GridItem";
+import { GridCenteredContainer } from "../components/grid";
+import { Save } from "@material-ui/icons";
+import { MainTitle } from "../components/text";
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -32,23 +32,61 @@ const UserPage = () => {
   };
 
   if (loading) {
-    return <div>Carregando usuário</div>;
+    return <Spinner message={"Carregando usuários"} />;
   }
 
   return (
     <>
-      <h2>Usuário #{id}</h2>
-
       <form onSubmit={formProps.handleSubmit(handleSubmit)}>
-        <ControlledTextField label="Nome" name={"nome"} formProps={formProps} />
-        <ControlledTextField label="CEP" name={"cep"} formProps={formProps} />
-        <ControlledTextField
-          label="Cidade"
-          name={"cidade"}
-          formProps={formProps}
-        />
-        <ControlledTextField label="UF" name={"uf"} formProps={formProps} />
-        <Button type={"submit"}>GRAVAR</Button>
+        <GridItem align="center" xs={12} sm={12} md={12}>
+          <MainTitle>Usuário #{id}</MainTitle>
+        </GridItem>
+        <GridCenteredContainer>
+          <GridItem xs={12} sm={12} md={12} />
+          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+            <ControlledTextField
+              fullWidth
+              label="Nome"
+              name={"nome"}
+              formProps={formProps}
+            />
+          </GridItem>
+          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+            <ControlledTextField
+              fullWidth
+              label="CEP"
+              name={"cep"}
+              formProps={formProps}
+            />
+          </GridItem>
+          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+            <ControlledTextField
+              fullWidth
+              label="Cidade"
+              name={"cidade"}
+              formProps={formProps}
+            />
+          </GridItem>
+          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+            <ControlledTextField
+              fullWidth
+              label="UF"
+              name={"uf"}
+              formProps={formProps}
+            />
+          </GridItem>
+          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+            <Button
+              fullWidth
+              variant="contained"
+              type={"submit"}
+              color="primary"
+              startIcon={<Save />}
+            >
+              GRAVAR
+            </Button>
+          </GridItem>
+        </GridCenteredContainer>
       </form>
     </>
   );

@@ -1,0 +1,19 @@
+import styled from "styled-components";
+
+export const Container = styled.div`
+  background-image: linear-gradient(#143752ff, #10a7d6ff);
+  background-position: center;
+  min-height: 100vh;
+  height: auto;
+  padding-bottom: 40px;
+`;
+
+export const LogoContainer = styled.div`
+  position: absolute;
+`;
+
+export const Logo = styled.img`
+  width: 43%;
+  height: 43%;
+  margin: 30px;
+`;

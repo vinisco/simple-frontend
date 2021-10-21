@@ -1,55 +1,33 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  actions as routeActions,
-  types as routes,
-} from "../reducers/routes.actions";
-
-import { Edit, DeleteOutline } from "@material-ui/icons";
+import { useSelector } from "react-redux";
+import GridContainer from "../components/grid/GridContainer";
+import GridItem from "../components/grid/GridItem";
+import { Spinner } from "../components/spinner";
+import { Table } from "../components/table";
+import { MainTitle } from "../components/text";
 
 const HomePage = () => {
-  const dispatch = useDispatch();
   const { loading, data } = useSelector((state) => state.home);
+  const rowsTitle = [
+    { name: "Nome", align: "left" },
+    { name: "Cidade/UF", align: "right" },
+    { name: "Ações", align: "right" },
+  ];
 
   if (loading) {
-    return <div>Carregando usuários</div>;
+    return <Spinner message={"Carregando usuários"} />;
   }
 
   return (
-    <>
-      <h2>Usuários</h2>
-      <table>
-        <thead>
-          <tr>
-            <td>Nome</td>
-            <td>Cidade/UF</td>
-            <td>Ações</td>
-          </tr>
-        </thead>
-
-        <tbody>
-          {data.map((u) => {
-            return (
-              <tr key={u.id}>
-                <td>{u.nome}</td>
-                <td>
-                  {u.cidade}/{u.uf}
-                </td>
-                <td>
-                  <Edit
-                    onClick={() =>
-                      dispatch(
-                        routeActions.redirectTo(routes.USER, { id: u.id })
-                      )
-                    }
-                  />
-                  <DeleteOutline />
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </>
+    <GridContainer>
+      <GridItem align="center" xs={12} sm={12} md={12}>
+        <MainTitle>Usuários</MainTitle>
+      </GridItem>
+      <GridItem xs={12} sm={1} md={2} />
+      <GridItem xs={12} sm={9} md={8}>
+        <Table rowsTitle={rowsTitle} rows={data} />
+      </GridItem>
+      <GridItem xs={12} sm={1} md={2} />
+    </GridContainer>
   );
 };
 

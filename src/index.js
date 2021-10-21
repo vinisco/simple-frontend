@@ -6,13 +6,14 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
-import theme from "./styles/theme";
+import GlobalStyle, { theme } from "./styles/theme";
 
 ReactDOM.render(
   <Provider store={store}>
     <StylesProvider injectFirst={true}>
       <ThemeProvider theme={theme}>
         <App />
+        <GlobalStyle />
       </ThemeProvider>
     </StylesProvider>
   </Provider>,
