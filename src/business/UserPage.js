@@ -12,10 +12,12 @@ import GridItem from "../components/grid/GridItem";
 import { GridCenteredContainer } from "../components/grid";
 import { Save } from "@material-ui/icons";
 import { MainTitle } from "../components/text";
+import { request } from "../utils/api";
 
 const UserPage = () => {
   const dispatch = useDispatch();
   const { loading, data, id } = useSelector((state) => state.user);
+
   const rules = {};
   const initialValues = {
     nome: "",
@@ -32,6 +34,20 @@ const UserPage = () => {
   };
   const handleSubmit = (values) => {
     dispatch(actions.saveUser.request(values));
+  };
+  const handleOnBlur = async (event) => {
+    const { value } = event.target;
+    if (value.length !== 9) {
+      return;
+    }
+    const data = await request({
+      is_mock: false,
+      url: `http://viacep.com.br/ws/${value}/json`,
+      method: "GET",
+    });
+
+    formProps.setValue("cidade", data.data.localidade);
+    formProps.setValue("uf", data.data.uf);
   };
 
   if (loading) {
@@ -56,6 +72,7 @@ const UserPage = () => {
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
             <ControlledZipCodeTextField
+              handleOnBlur={handleOnBlur}
               fullWidth
               label="CEP"
               name={"cep"}

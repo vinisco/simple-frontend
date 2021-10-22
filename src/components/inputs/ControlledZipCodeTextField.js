@@ -4,12 +4,18 @@ import { TextField as MTextField } from "@material-ui/core";
 import { Controller } from "react-hook-form";
 import { ZipCodeTextField } from ".";
 
-const ControlledZipCodeTextField = ({ formProps, name, ...otherProps }) => {
+const ControlledZipCodeTextField = ({
+  formProps,
+  name,
+  handleOnBlur,
+  ...otherProps
+}) => {
   const { control, errors, rules, initialValues } = formProps;
   const isError = errors[name] !== undefined;
 
   return (
     <Controller
+      {...otherProps}
       name={name}
       control={control}
       rules={rules[name]}
@@ -25,7 +31,8 @@ const ControlledZipCodeTextField = ({ formProps, name, ...otherProps }) => {
             onChange(v);
             !!otherProps.onChange && otherProps.onChange(v);
           }}
-          onBlur={() => {
+          onBlur={(event) => {
+            handleOnBlur(event);
             onBlur();
             !!otherProps.onBlur && otherProps.onBlur(value);
           }}
