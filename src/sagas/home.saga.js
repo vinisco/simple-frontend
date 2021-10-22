@@ -23,7 +23,7 @@ const loadUsers = asyncFlow({
     });
   },
   postSuccess: function* ({ response }) {
-    console.log({ users: response.data });
+    yield { users: response.data };
   },
 });
 

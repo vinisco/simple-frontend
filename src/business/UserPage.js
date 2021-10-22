@@ -43,7 +43,7 @@ const UserPage = () => {
         </GridItem>
         <GridCenteredContainer>
           <GridItem xs={12} sm={12} md={12} />
-          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+          <GridItem xs={12} sm={12} md={12}>
             <ControlledTextField
               fullWidth
               label="Nome"
@@ -51,7 +51,7 @@ const UserPage = () => {
               formProps={formProps}
             />
           </GridItem>
-          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+          <GridItem xs={12} sm={12} md={12}>
             <ControlledTextField
               fullWidth
               label="CEP"
@@ -59,7 +59,7 @@ const UserPage = () => {
               formProps={formProps}
             />
           </GridItem>
-          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+          <GridItem xs={12} sm={12} md={12}>
             <ControlledTextField
               fullWidth
               label="Cidade"
@@ -67,7 +67,7 @@ const UserPage = () => {
               formProps={formProps}
             />
           </GridItem>
-          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+          <GridItem xs={12} sm={12} md={12}>
             <ControlledTextField
               fullWidth
               label="UF"
@@ -75,7 +75,7 @@ const UserPage = () => {
               formProps={formProps}
             />
           </GridItem>
-          <GridItem columSpacing={3} xs={12} sm={12} md={12}>
+          <GridItem xs={12} sm={12} md={12}>
             <Button
               fullWidth
               variant="contained"

@@ -30,7 +30,7 @@ const loadUser = asyncFlow({
     });
   },
   postSuccess: function* ({ response }) {
-    console.log({ user: response.data });
+    yield { user: response.data };
   },
 });
 

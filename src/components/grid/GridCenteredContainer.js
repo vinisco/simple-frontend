@@ -1,4 +1,4 @@
-import { makeStyles, Paper, createStyles } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { GridContainer, GridItem } from ".";
 import { Container } from "./styles";
@@ -8,7 +8,7 @@ const GridCenteredContainer = (props) => {
 
   return (
     <>
-      <GridContainer sx={{ flexGrow: 1 }} {...rest}>
+      <GridContainer {...rest}>
         <GridItem xs={1} sm={2} md={3} />
         <GridItem xs={10} sm={8} md={6}>
           <Paper>

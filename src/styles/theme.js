@@ -9,7 +9,6 @@ export const theme = {
     info: "#4fbbdbff",
     danger: "#d44a47ff",
   },
-  font: Montserrat,
 };
 
 const GlobalStyle = createGlobalStyle`

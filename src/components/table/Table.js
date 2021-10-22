@@ -8,7 +8,6 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  styled,
 } from "@material-ui/core";
 
 import { Edit, DeleteOutline } from "@material-ui/icons";
@@ -17,6 +16,7 @@ import {
   types as routes,
 } from "../../reducers/routes.actions";
 import { StyledTableCell, StyledTableRow } from "./style";
+import { calculateAge } from "../../utils/calculateAge";
 
 const CustomizedTables = (props) => {
   console.log("props", props);
@@ -44,10 +44,13 @@ const CustomizedTables = (props) => {
               <TableCell component="th" scope="row">
                 {row.nome}
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                 {row.cidade}/{row.uf}
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
+                {calculateAge(row.dataNascimento)}
+              </TableCell>
+              <TableCell align="center">
                 <Edit
                   onClick={() =>
                     dispatch(

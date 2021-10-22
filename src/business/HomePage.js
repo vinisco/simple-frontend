@@ -9,8 +9,9 @@ const HomePage = () => {
   const { loading, data } = useSelector((state) => state.home);
   const rowsTitle = [
     { name: "Nome", align: "left" },
-    { name: "Cidade/UF", align: "right" },
-    { name: "Ações", align: "right" },
+    { name: "Cidade/UF", align: "center" },
+    { name: "Idade", align: "center" },
+    { name: "Ações", align: "center" },
   ];
 
   if (loading) {
