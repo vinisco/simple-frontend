@@ -17,6 +17,7 @@ import {
 } from "../../reducers/routes.actions";
 import { StyledTableCell, StyledTableRow } from "./style";
 import { calculateAge } from "../../utils/calculateAge";
+import { actions } from "../../reducers/home.actions";
 
 const CustomizedTables = (props) => {
   console.log("props", props);
@@ -58,7 +59,16 @@ const CustomizedTables = (props) => {
                     )
                   }
                 />
-                <DeleteOutline />
+                <DeleteOutline
+                  onClick={() =>
+                    dispatch(
+                      actions.deleteUser.request({
+                        id: row.id,
+                        data: props.rows,
+                      })
+                    )
+                  }
+                />
               </TableCell>
             </StyledTableRow>
           ))}

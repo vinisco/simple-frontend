@@ -27,4 +27,23 @@ const loadUsers = asyncFlow({
   },
 });
 
-export const sagas = [homeRouteWatcher(), loadUsers.watcher()];
+const deleteUsers = asyncFlow({
+  actionGenerator: actions.deleteUser,
+  api: ({ id, data }) => {
+    return request({
+      url: `/usuario/${id}`,
+      method: "delete",
+      isMock: true,
+      mockResult: data.filter((user) => user.id !== id),
+    });
+  },
+  postSuccess: function* ({ response }) {
+    yield { users: response.data };
+  },
+});
+
+export const sagas = [
+  homeRouteWatcher(),
+  loadUsers.watcher(),
+  deleteUsers.watcher(),
+];
