@@ -4,6 +4,7 @@ import GridItem from "../components/grid/GridItem";
 import { Spinner } from "../components/spinner";
 import { Table } from "../components/table";
 import { MainTitle } from "../components/text";
+import { orderData } from "../utils/orderData";
 
 const HomePage = () => {
   const { loading, data } = useSelector((state) => state.home);
@@ -25,7 +26,7 @@ const HomePage = () => {
       </GridItem>
       <GridItem xs={12} sm={1} md={2} />
       <GridItem xs={12} sm={9} md={8}>
-        <Table rowsTitle={rowsTitle} rows={data} />
+        <Table rowsTitle={rowsTitle} rows={orderData(data, "dataNascimento")} />
       </GridItem>
       <GridItem xs={12} sm={1} md={2} />
     </GridContainer>
