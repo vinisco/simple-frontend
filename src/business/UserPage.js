@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { actions } from "../reducers/user.actions";
 import { Button } from "@material-ui/core";
-import { ControlledTextField } from "../components/inputs";
+import {
+  ControlledTextField,
+  ControlledZipCodeTextField,
+} from "../components/inputs";
 import { Spinner } from "../components/spinner";
 import GridItem from "../components/grid/GridItem";
 import { GridCenteredContainer } from "../components/grid";
@@ -52,7 +55,7 @@ const UserPage = () => {
             />
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
-            <ControlledTextField
+            <ControlledZipCodeTextField
               fullWidth
               label="CEP"
               name={"cep"}

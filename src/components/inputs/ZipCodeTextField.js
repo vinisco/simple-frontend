@@ -3,26 +3,26 @@ import NumberFormat from "react-number-format";
 import { removeNonDigitsFromString } from "../../utils/basic";
 
 const formatZipCode = (value) => {
-	const stripped = removeNonDigitsFromString(value);
+  const stripped = removeNonDigitsFromString(value);
 
-	let finalValue = stripped.slice(0, 5);
-	if (stripped.length > 5) {
-		finalValue += "-" + stripped.slice(5, 8);
-	}
-	return finalValue;
+  let finalValue = stripped.slice(0, 5);
+  if (stripped.length > 5) {
+    finalValue += "-" + stripped.slice(5, 8);
+  }
+  return finalValue;
 };
 
 const ZipCodeTextField = ({ inputRef, onChange, ...other }) => {
-	return (
-		<NumberFormat
-			{...other}
-			getInputRef={inputRef}
-			onValueChange={(values) => {
-				onChange(values.formattedValue);
-			}}
-			format={formatZipCode}
-		/>
-	);
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange(values.formattedValue);
+      }}
+      format={formatZipCode}
+    />
+  );
 };
 
 export default ZipCodeTextField;
