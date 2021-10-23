@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { useForm } from "react-hook-form";
 import { actions } from "../reducers/user/user.actions";
@@ -8,7 +8,6 @@ import {
   ControlledTextField,
   ControlledZipCodeTextField,
 } from "../components/inputs";
-import { Spinner } from "../components/spinner";
 import GridItem from "../components/grid/GridItem";
 import { GridCenteredContainer } from "../components/grid";
 import { Save } from "@material-ui/icons";
@@ -17,7 +16,6 @@ import { request } from "../utils/api";
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const { loading, data, id } = useSelector((state) => state.user);
 
   const rules = {};
   const initialValues = {
@@ -26,7 +24,6 @@ const UserPage = () => {
     cep: "",
     cidade: "",
     uf: "",
-    ...data,
   };
   const formProps = {
     ...useForm(),
@@ -51,15 +48,11 @@ const UserPage = () => {
     formProps.setValue("uf", data.data.uf);
   };
 
-  if (loading) {
-    return <Spinner message={"Carregando dados do usuário"} />;
-  }
-
   return (
     <>
       <form onSubmit={formProps.handleSubmit(handleSubmit)}>
         <GridItem align="center" xs={12} sm={12} md={12}>
-          <MainTitle>Usuário #{id}</MainTitle>
+          <MainTitle>Novo Usuário</MainTitle>
         </GridItem>
         <GridCenteredContainer>
           <GridItem xs={12} sm={12} md={12} />

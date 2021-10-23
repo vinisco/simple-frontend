@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Paper,
@@ -8,20 +8,27 @@ import {
   TableHead,
   TableRow,
   TableCell,
+  Button,
 } from "@material-ui/core";
 
-import { Edit, DeleteOutline } from "@material-ui/icons";
+import { Edit, DeleteOutline, AddCircleOutlined } from "@material-ui/icons";
 import {
   actions as routeActions,
   types as routes,
 } from "../../reducers/routes.actions";
-import { StyledTableCell, StyledTableRow } from "./style";
+import { StyledTableCell, StyledTableRow, Container } from "./style";
 import { calculateAge } from "../../utils/calculateAge";
-import { actions } from "../../reducers/home.actions";
+import { actions } from "../../reducers/home/home.actions";
+import { DeleteDialog } from "../../DeleteDialog";
 
 const CustomizedTables = (props) => {
-  console.log("props", props);
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+
+  const handleDelete = () => {
+    setOpen(true);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table
@@ -41,7 +48,7 @@ const CustomizedTables = (props) => {
         </TableHead>
         <TableBody>
           {props.rows.map((row) => (
-            <StyledTableRow key={row.nome}>
+            <StyledTableRow key={row.id}>
               <TableCell component="th" scope="row">
                 {row.nome}
               </TableCell>
@@ -59,8 +66,12 @@ const CustomizedTables = (props) => {
                     )
                   }
                 />
-                <DeleteOutline
-                  onClick={() =>
+                <DeleteOutline onClick={handleDelete} />
+                <DeleteDialog
+                  open={open}
+                  title={"Excluir usuário"}
+                  setOpen={setOpen}
+                  deleteFunction={() =>
                     dispatch(
                       actions.deleteUser.request({
                         id: row.id,
@@ -74,6 +85,16 @@ const CustomizedTables = (props) => {
           ))}
         </TableBody>
       </Table>
+      <Container>
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          startIcon={<AddCircleOutlined />}
+        >
+          Adicionar usuário
+        </Button>
+      </Container>
     </TableContainer>
   );
 };

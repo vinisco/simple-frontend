@@ -1,13 +1,13 @@
 import { put, select } from "redux-saga/effects";
-import { routeWatcher } from "./routes.saga";
-import asyncFlow from "./asyncHandler";
+import { routeWatcher } from "../routes.saga";
+import asyncFlow from "../asyncHandler";
 import {
   types as routes,
   actions as routeActions,
-} from "../reducers/routes.actions";
-import { actions } from "../reducers/user.actions";
-import { request } from "../utils/api";
-import usersMock from "./users.mock";
+} from "../../reducers/routes.actions";
+import { actions } from "../../reducers/user/user.actions";
+import { request } from "../../utils/api";
+import usersMock from "../users.mock";
 
 function* userRouteWatcher() {
   yield routeWatcher(routes.USER, function* () {
