@@ -38,7 +38,7 @@ const deleteUsers = asyncFlow({
     });
   },
   postSuccess: function* ({ response }) {
-    yield { users: response.data };
+    yield put(actions.loadUsers.request());
   },
 });
 

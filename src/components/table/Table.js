@@ -19,7 +19,7 @@ import {
 import { StyledTableCell, StyledTableRow, Container } from "./style";
 import { calculateAge } from "../../utils/calculateAge";
 import { actions } from "../../reducers/home/home.actions";
-import { DeleteDialog } from "../../DeleteDialog";
+import { DeleteDialog } from "../DeleteDialog";
 
 const CustomizedTables = (props) => {
   const dispatch = useDispatch();
@@ -87,6 +87,7 @@ const CustomizedTables = (props) => {
       </Table>
       <Container>
         <Button
+          onClick={() => dispatch(routeActions.redirectTo(routes.CREATE))}
           fullWidth
           variant="contained"
           color="primary"

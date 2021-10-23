@@ -65,6 +65,7 @@ const UserPage = () => {
           <GridItem xs={12} sm={12} md={12} />
           <GridItem xs={12} sm={12} md={12}>
             <ControlledTextField
+              required
               fullWidth
               label="Nome"
               name={"nome"}
@@ -73,6 +74,7 @@ const UserPage = () => {
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
             <ControlledZipCodeTextField
+              required
               handleOnBlur={handleOnBlur}
               fullWidth
               label="CEP"
@@ -82,6 +84,7 @@ const UserPage = () => {
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
             <ControlledTextField
+              required
               fullWidth
               label="Cidade"
               name={"cidade"}
@@ -90,6 +93,7 @@ const UserPage = () => {
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
             <ControlledTextField
+              required
               fullWidth
               label="UF"
               name={"uf"}
@@ -98,6 +102,7 @@ const UserPage = () => {
           </GridItem>
           <GridItem xs={12} sm={12} md={12}>
             <ControlledDateField
+              required
               fullWidth
               label="Data de nascimento"
               name={"dataNascimento"}
@@ -112,7 +117,7 @@ const UserPage = () => {
               color="primary"
               startIcon={<Save />}
             >
-              GRAVAR
+              SALVAR
             </Button>
           </GridItem>
         </GridCenteredContainer>
