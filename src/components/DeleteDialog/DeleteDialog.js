@@ -6,12 +6,18 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Dialog } from "@material-ui/core";
 
-export default function DeleteDialog({ open, setOpen, deleteFunction, title }) {
+export default function DeleteDialog({
+  open,
+  setOpen,
+  deleteFunction,
+  title,
+  id,
+}) {
   const handleClose = () => {
     setOpen(false);
   };
   const handleCloseDelete = () => {
-    deleteFunction();
+    deleteFunction(id);
     setOpen(false);
   };
 

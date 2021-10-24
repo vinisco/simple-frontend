@@ -24,10 +24,7 @@ import { DeleteDialog } from "../DeleteDialog";
 const CustomizedTables = (props) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-
-  const handleDelete = () => {
-    setOpen(true);
-  };
+  const [idToDelete, setIdToDelete] = useState(false);
 
   return (
     <TableContainer component={Paper}>
@@ -47,42 +44,47 @@ const CustomizedTables = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.rows.map((row) => (
-            <StyledTableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.nome}
-              </TableCell>
-              <TableCell align="center">
-                {row.cidade}/{row.uf}
-              </TableCell>
-              <TableCell align="center">
-                {calculateAge(row.dataNascimento)}
-              </TableCell>
-              <TableCell align="center">
-                <Edit
-                  onClick={() =>
-                    dispatch(
-                      routeActions.redirectTo(routes.USER, { id: row.id })
-                    )
-                  }
-                />
-                <DeleteOutline onClick={handleDelete} />
-                <DeleteDialog
-                  open={open}
-                  title={"Excluir usuário"}
-                  setOpen={setOpen}
-                  deleteFunction={() =>
-                    dispatch(
-                      actions.deleteUser.request({
-                        id: row.id,
-                        data: props.rows,
-                      })
-                    )
-                  }
-                />
-              </TableCell>
-            </StyledTableRow>
-          ))}
+          {props.rows.map((row) => {
+            const openDialog = () => {
+              setOpen(true);
+              setIdToDelete(row.id);
+            };
+
+            const handleDelete = (id) => {
+              dispatch(actions.deleteUser.request({ id }));
+            };
+
+            return (
+              <StyledTableRow key={row.id}>
+                <TableCell component="th" scope="row">
+                  {row.nome}
+                </TableCell>
+                <TableCell align="center">
+                  {row.cidade}/{row.uf}
+                </TableCell>
+                <TableCell align="center">
+                  {calculateAge(row.dataNascimento)}
+                </TableCell>
+                <TableCell align="center">
+                  <Edit
+                    onClick={() =>
+                      dispatch(
+                        routeActions.redirectTo(routes.USER, { id: row.id })
+                      )
+                    }
+                  />
+                  <DeleteOutline onClick={openDialog} />
+                  <DeleteDialog
+                    open={open}
+                    title={"Excluir usuário"}
+                    setOpen={setOpen}
+                    deleteFunction={handleDelete}
+                    id={idToDelete}
+                  />
+                </TableCell>
+              </StyledTableRow>
+            );
+          })}
         </TableBody>
       </Table>
       <Container>
