@@ -8,6 +8,9 @@ import { orderData } from "../utils/orderData";
 
 const HomePage = () => {
   const { loading, data } = useSelector((state) => state.home);
+
+  console.log(orderData(data, Date, "dataNascimento"));
+
   const rowsTitle = [
     { name: "Nome", align: "left" },
     { name: "Cidade/UF", align: "center" },

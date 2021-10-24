@@ -14,13 +14,13 @@ function* createRouteWatcher() {
 
 const createUser = asyncFlow({
   actionGenerator: actions.createUser,
-  api: (...values) => {
+  api: (values) => {
+    console.log(values);
     return request({
-      url: `/usuarios`,
+      url: `https://simple-backend-test.herokuapp.com/person`,
       method: "post",
       body: values,
-      isMock: true,
-      mockResult: {},
+      isMock: false,
     });
   },
   postSuccess: function* () {

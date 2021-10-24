@@ -20,7 +20,7 @@ const UserPage = () => {
   const rules = {};
   const initialValues = {
     nome: "",
-    dataNascimento: "",
+    dataNascimento: new Date(),
     cep: "",
     cidade: "",
     uf: "",

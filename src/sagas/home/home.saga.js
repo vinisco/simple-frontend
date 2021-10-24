@@ -4,7 +4,6 @@ import asyncFlow from "../asyncHandler";
 import { types as routes } from "../../reducers/routes.actions";
 import { actions } from "../../reducers/home/home.actions";
 import { request } from "../../utils/api";
-import usersMock from "../users.mock";
 
 function* homeRouteWatcher() {
   yield routeWatcher(routes.HOME, function* () {
@@ -16,10 +15,9 @@ const loadUsers = asyncFlow({
   actionGenerator: actions.loadUsers,
   api: () => {
     return request({
-      url: `/usuarios`,
+      url: `https://simple-backend-test.herokuapp.com/person`,
       method: "get",
-      isMock: true,
-      mockResult: usersMock,
+      isMock: false,
     });
   },
   postSuccess: function* ({ response }) {
@@ -29,15 +27,14 @@ const loadUsers = asyncFlow({
 
 const deleteUsers = asyncFlow({
   actionGenerator: actions.deleteUser,
-  api: ({ id, data }) => {
+  api: ({ id }) => {
     return request({
-      url: `/usuario/${id}`,
+      url: `https://simple-backend-test.herokuapp.com/person/${id}`,
       method: "delete",
-      isMock: true,
-      mockResult: data.filter((user) => user.id !== id),
+      isMock: false,
     });
   },
-  postSuccess: function* ({ response }) {
+  postSuccess: function* () {
     yield put(actions.loadUsers.request());
   },
 });

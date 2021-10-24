@@ -7,7 +7,6 @@ import {
 } from "../../reducers/routes.actions";
 import { actions } from "../../reducers/user/user.actions";
 import { request } from "../../utils/api";
-import usersMock from "../users.mock";
 
 function* userRouteWatcher() {
   yield routeWatcher(routes.USER, function* () {
@@ -23,10 +22,9 @@ const loadUser = asyncFlow({
   },
   api: (values) => {
     return request({
-      url: `/usuario/${values.id}`,
+      url: `https://simple-backend-test.herokuapp.com/person/${values.id}`,
       method: "get",
-      isMock: true,
-      mockResult: usersMock.find((u) => u.id === values.id) ?? null,
+      isMock: false,
     });
   },
   postSuccess: function* ({ response }) {
@@ -42,11 +40,10 @@ const saveUser = asyncFlow({
   },
   api: ({ id, ...values }) => {
     return request({
-      url: `/usuario/${id}`,
+      url: `https://simple-backend-test.herokuapp.com/person/${id}`,
       method: "put",
       body: values,
-      isMock: true,
-      mockResult: {},
+      isMock: false,
     });
   },
   postSuccess: function* () {
