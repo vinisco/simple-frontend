@@ -33,22 +33,36 @@ const UserPage = () => {
     rules,
     initialValues,
   };
+  const { setValue, setError, clearErrors } = formProps;
+
   const handleSubmit = (values) => {
     dispatch(actions.saveUser.request(values));
   };
+
   const handleOnBlur = async (event) => {
     const { value } = event.target;
     if (value.length !== 9) {
       return;
     }
-    const data = await request({
+    const { data } = await request({
       is_mock: false,
       url: `https://viacep.com.br/ws/${value}/json`,
       method: "GET",
     });
 
-    formProps.setValue("cidade", data.data.localidade);
-    formProps.setValue("uf", data.data.uf);
+    const { localidade, uf } = data;
+    if (localidade && uf) {
+      clearErrors("cep");
+      setValue("cidade", localidade);
+      setValue("uf", uf);
+    } else {
+      setError("cep", {
+        type: "manual",
+        message: "CEP inválido",
+      });
+      setValue("cidade", "");
+      setValue("uf", "");
+    }
   };
 
   if (loading) {
