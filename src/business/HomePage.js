@@ -9,8 +9,6 @@ import { orderData } from "../utils/orderData";
 const HomePage = () => {
   const { loading, data } = useSelector((state) => state.home);
 
-  console.log(orderData(data, Date, "dataNascimento"));
-
   const rowsTitle = [
     { name: "Nome", align: "left" },
     { name: "Cidade/UF", align: "center" },
@@ -29,7 +27,10 @@ const HomePage = () => {
       </GridItem>
       <GridItem xs={12} sm={1} md={2} />
       <GridItem xs={12} sm={9} md={8}>
-        <Table rowsTitle={rowsTitle} rows={orderData(data, "dataNascimento")} />
+        <Table
+          rowsTitle={rowsTitle}
+          rows={orderData(data, Date, "dataNascimento")}
+        />
       </GridItem>
       <GridItem xs={12} sm={1} md={2} />
     </GridContainer>
