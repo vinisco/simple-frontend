@@ -67,17 +67,17 @@ const CustomizedTables = (props) => {
                   {calculateAge(row.dataNascimento)}
                 </TableCell>
                 <TableCell align="center">
-                  <IconButton>
-                    <Edit
-                      onClick={() =>
-                        dispatch(
-                          routeActions.redirectTo(routes.USER, { id: row.id })
-                        )
-                      }
-                    />
+                  <IconButton
+                    onClick={() =>
+                      dispatch(
+                        routeActions.redirectTo(routes.USER, { id: row.id })
+                      )
+                    }
+                  >
+                    <Edit />
                   </IconButton>
-                  <IconButton>
-                    <DeleteOutline onClick={openDialog} />
+                  <IconButton onClick={openDialog}>
+                    <DeleteOutline />
                   </IconButton>
                   <DeleteDialog
                     open={open}
