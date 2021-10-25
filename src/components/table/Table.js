@@ -9,6 +9,7 @@ import {
   TableRow,
   TableCell,
   Button,
+  IconButton,
 } from "@material-ui/core";
 
 import { Edit, DeleteOutline, AddCircleOutlined } from "@material-ui/icons";
@@ -66,14 +67,18 @@ const CustomizedTables = (props) => {
                   {calculateAge(row.dataNascimento)}
                 </TableCell>
                 <TableCell align="center">
-                  <Edit
-                    onClick={() =>
-                      dispatch(
-                        routeActions.redirectTo(routes.USER, { id: row.id })
-                      )
-                    }
-                  />
-                  <DeleteOutline onClick={openDialog} />
+                  <IconButton>
+                    <Edit
+                      onClick={() =>
+                        dispatch(
+                          routeActions.redirectTo(routes.USER, { id: row.id })
+                        )
+                      }
+                    />
+                  </IconButton>
+                  <IconButton>
+                    <DeleteOutline onClick={openDialog} />
+                  </IconButton>
                   <DeleteDialog
                     open={open}
                     title={"Excluir usuário"}
